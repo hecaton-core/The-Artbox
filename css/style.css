@@ -43,7 +43,21 @@ footer {
     font-size: 12px;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 50%;
+}
 
+input, textarea {
+    padding: 10px;
+    border: 1px solid black ;
+}
+
+.titreFormulaire {
+    text-align: center;
+}
 
 #liste-oeuvres {
     display: flex;
