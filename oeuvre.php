@@ -11,24 +11,40 @@
 <body>
 <?php require_once(__DIR__ .'/header.php'); ?>
 
-<main><?php require_once(__DIR__ . '/oeuvres.php');
-        $id = (int) $_GET['id'] ; //int pour convertir le caractère en nombre entier
-        foreach ($oeuvres as $oeuvre) {
-        if ($id === $oeuvre['id']) {
-        ?>
-    <article id="detail-oeuvre">
-        <div id="img-oeuvre">
-            <img src="<?= $oeuvre['oeuvreImage'] ?>" alt="<?= $oeuvre['oeuvreTitre'] ?>">
-        </div>
-        <div id="contenu-oeuvre">
-            <h1><?= $oeuvre['oeuvreTitre'] ?></h1>
-            <p class="description"><?= $oeuvre['oeuvreArtiste'] ?></p>
-            <p class="description-complete">
+<main>
+    <?php require_once(__DIR__ . '/bdd.php');
+        $mysqlClient = connexion (); 
+
+        if (empty($_GET['id'])) {
+            header('location: index.php');
+            exit ;
+        }
+
+        $sqlQuery = 'SELECT * FROM oeuvres WHERE id=:id'; 
+        $oeuvresStatement = $mysqlClient->prepare($sqlQuery);
+        $oeuvresStatement->execute([
+            'id' => $_GET['id']
+        ]);
+        $oeuvre = $oeuvresStatement->fetch();
+
+        if ($oeuvre === false) {
+            header('location: index.php');
+            exit ;
+        }
+    ?>
+        <article id="detail-oeuvre">
+            <div id="img-oeuvre">
+                <img src="<?= $oeuvre['oeuvreImage'] ?>" alt="<?= $oeuvre['oeuvreTitre'] ?>">
+            </div>
+            <div id="contenu-oeuvre">
+                <h1><?= $oeuvre['oeuvreTitre'] ?></h1>
+                <p class="description"><?= $oeuvre['oeuvreArtiste'] ?></p>
+                <p class="description-complete">
                 <?= $oeuvre['oeuvreDescription'] ?>
-            </p>
-        </div>
-    </article>
-    <?php  ;} } ?>
+                </p>
+            </div>
+        </article>
+
 </main>
 
 <?php require_once(__DIR__ .'/footer.php'); ?>

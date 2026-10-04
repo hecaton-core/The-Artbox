@@ -12,8 +12,11 @@
     <?php require_once(__DIR__ .'/header.php'); ?>
     <main>
         <div id="liste-oeuvres">
-            
-        <?php require_once(__DIR__ . '/oeuvres.php');
+        <?php require_once(__DIR__ . '/bdd.php');
+        $mysqlClient = connexion (); //création/recup de la connexion PDO à la bdd sql
+        $sqlQuery = 'SELECT * FROM oeuvres'; //création requête sql
+        $oeuvresStatement = $mysqlClient->query($sqlQuery); //envoi requête (PDOstatement = requête préparée, puis le jeu de résultats associés)
+        $oeuvres = $oeuvresStatement->fetchAll(); //récupération données requête sous forme de tableau php
         foreach ($oeuvres as $oeuvre) { ?>    
             <article class="oeuvre">
                 <a href="oeuvre.php?id=<?= $oeuvre['id'] ?>">
@@ -32,5 +35,3 @@
 
 </body>
 </html>
-
-
