@@ -59,6 +59,15 @@ input, textarea {
     text-align: center;
 }
 
+.erreurForm {
+    padding: 15px;
+    margin: 20px;
+    border: 2px solid;
+    font-weight: bold;
+    text-align: justify;
+    color: red;
+}
+
 #liste-oeuvres {
     display: flex;
     flex-wrap: wrap;

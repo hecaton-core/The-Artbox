@@ -18,15 +18,16 @@
         $oeuvresStatement = $mysqlClient->query($sqlQuery); //envoi requête (PDOstatement = requête préparée, puis le jeu de résultats associés)
         $oeuvres = $oeuvresStatement->fetchAll(); //récupération données requête sous forme de tableau php
         foreach ($oeuvres as $oeuvre) { ?>    
+
             <article class="oeuvre">
-                <a href="oeuvre.php?id=<?= $oeuvre['id'] ?>">
-                    <img src="<?= $oeuvre['oeuvreImage'] ?>" alt="<?= $oeuvre['oeuvreTitre'] ?>">
-                    <h2><?= $oeuvre['oeuvreTitre'] ?></h2>
-                    <p class="description"><?= $oeuvre['oeuvreArtiste'] ?></p>
+                <a href="oeuvre.php?id=<?= htmlspecialchars($oeuvre['id']) ?>">
+                    <img src="<?= htmlspecialchars($oeuvre['oeuvreImage']) ?>" alt="<?= htmlspecialchars($oeuvre['oeuvreTitre']) ?>">
+                    <h2><?= htmlspecialchars($oeuvre['oeuvreTitre']) ?></h2>
+                    <p class="description"><?= htmlspecialchars($oeuvre['oeuvreArtiste']) ?></p>
                 </a>
             </article>
             
-        <?php  } ?>
+        <?php } ?>
 
         </div>
     </main>

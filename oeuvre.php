@@ -34,13 +34,14 @@
     ?>
         <article id="detail-oeuvre">
             <div id="img-oeuvre">
-                <img src="<?= $oeuvre['oeuvreImage'] ?>" alt="<?= $oeuvre['oeuvreTitre'] ?>">
+                <img src="<?= htmlspecialchars($oeuvre['oeuvreImage']) ?>" 
+                alt="<?= htmlspecialchars($oeuvre['oeuvreTitre']) ?>">
             </div>
             <div id="contenu-oeuvre">
-                <h1><?= $oeuvre['oeuvreTitre'] ?></h1>
-                <p class="description"><?= $oeuvre['oeuvreArtiste'] ?></p>
+                <h1><?= htmlspecialchars($oeuvre['oeuvreTitre']) ?></h1>
+                <p class="description"><?= htmlspecialchars($oeuvre['oeuvreArtiste']) ?></p>
                 <p class="description-complete">
-                <?= $oeuvre['oeuvreDescription'] ?>
+                <?= htmlspecialchars($oeuvre['oeuvreDescription']) ?>
                 </p>
             </div>
         </article>

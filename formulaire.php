@@ -13,9 +13,7 @@
     <?php require_once(__DIR__ .'/header.php'); ?>
     <main>
         <p><h1 class="titreFormulaire">Formulaire d'ajout d'oeuvres</h1></p><br>
-        <form action="" method="post">
-            <label for="id">Numéro d'oeuvre</label>
-            <input type="text" name="numeroOeuvre" id="id" placeholder="(champ temporaire)" required>
+        <form action="traitement.php" method="post">
             <label for="oeuvreImage">URL de l'image</label>
             <input type="url" name="oeuvreImage" id="oeuvreImage" required>
             <label for="oeuvreTitre">Titre de l'oeuvre</label>
